@@ -7,4 +7,10 @@ defmodule Okta do
        :api_ver => "/api/v1"
      }
   end
+
+  def headers(okta) do
+    [{"Authorization", "SSWS " <> okta[:api_token]},
+      {"Accept", "application/json"},
+      {"Content-type", "application/json"}]
+  end
 end
