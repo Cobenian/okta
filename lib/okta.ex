@@ -13,4 +13,20 @@ defmodule Okta do
       {"Accept", "application/json"},
       {"Content-type", "application/json"}]
   end
+  
+  def decode(json) do
+    Poison.decode! json.body
+  end
+
+  def build_url(okta, url) do
+    okta[:site] <> okta[:api_ver] <> url
+  end
+
+  def build_url(okta, url, arg) do
+    okta[:site] <> okta[:api_ver] <> url <> arg
+  end
+
+  def debug(arg) do
+    IO.puts("[DEBUG] " <> arg)
+  end
 end

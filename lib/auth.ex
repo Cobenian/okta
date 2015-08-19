@@ -1,10 +1,10 @@
 defmodule Okta.Auth do
 
     def authn(okta, user, password) do
-       {:ok, response} = HTTPoison.post(okta[:site] <> okta[:api_ver] <> "/authn",    
+       {:ok, response} = HTTPoison.post(Okta.build_url(okta, "/authn"),    
             "{\"username\": \"#{user}\", \"password\": \"#{password}\"}",
             Okta.headers(okta))
-       Poison.decode! response.body
+       Okta.decode(response) 
     end
 end
 
